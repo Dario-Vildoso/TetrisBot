@@ -6,11 +6,21 @@
 
 ### **Carrera:** Ing. de Sistemas
 
-### **Curso:** 7mo Semestre - Inteligecia Artificial I - SIS420 
+### **Curso:** 7mo Semestre 
+
+### **Materia:** Inteligecia Artificial I - SIS420 
+
+### **Docente:** Pacheco Lora Carlos Walter
+
+## Contacto:
+
+Gmail: ltronf16@gmail.com
 
 # Tetris Q-Learning Agent 
 
 Este proyecto implementa un agente que aprende a jugar **Tetris** utilizando el entorno personalizado `tetris_gymnasium` compatible con `gymnasium`.
+
+<img src="./img/logo.png"/>
 
 Para esto, se han implementado varios agentes utilizando diferentes métodos de **Aprendizaje por Refuerzo**.
 
@@ -25,6 +35,8 @@ El entorno utilizado es una versión de Tetris basada en `gymnasium`, con render
 ---
 
 ## El Desafío de Tetris
+
+<img src="./img/Complejidad.gif" width=500px/>
 
 Tetris ha sido un reto lógico desde siempre. Aunque parezca un juego sencillo, contempla una complejidad matemática profunda, lo que supone un desafío de programación que ni hoy en día se puede superar completamente, puesto que no existe ningún algoritmo que garantice jugar una partida de Tetris de forma efectiva y eficiente indefinidamente.
 
@@ -56,6 +68,8 @@ Como no podemos definir un algoritmo que elija la mejor ruta para jugar Tetris, 
 ---
 
 ## Métodos de Acción-Valor
+
+<img src="./img/+100.gif" style="display:inline-block;" width=400px/> <img src="./img/+1000.gif" style="display:inline-block;" width=400px/> <img src="./img/-500.gif" style="display:inline-block;" width=400px/>
 
 Estos son una serie de métodos que utiliza un agente (bot) para aprender qué hacer en cada problema considerando las recompensas que obtiene por cada acción. Es decir, el bot en un inicio tomará decisiones al azar siguiendo un parámetro $\epsilon$ que es un porcentaje de exploración. De este modo irá tomando decisiones en cada estado del juego y verá cuáles son las elecciones que generaron mayores recompensas para, posteriormente, luego de jugar varios juegos, haber definido las acciones que generan mayor recompensa y entonces empezará a elegir esas acciones para cada juego.
 
@@ -109,9 +123,13 @@ De este modo, mientras mayor sea el valor, mayor será la probabilidad de elegir
 
 Al hacer pruebas con todos estos métodos, podemos notar fácilmente que ninguno funciona correctamente. La mayoría de los bots terminan eligiendo una única acción a tomar porque en algún momento de la partida esa acción les dio una mayor recompensa, pero esto no tiene sentido en el contexto de Tetris, puesto que no existe una acción definida que podamos considerar como la mejor acción a tomar durante todo el juego.
 
-En ocasiones, al explorar, el bot pudo haber limpiado una línea del juego por casualidad, obteniendo una mayor recompensa para la acción que realizó, lo que hará que prefiera utilizar esa acción aún sin saber por qué funcionó. Por lo tanto, la mayoría de estos agentes solo abusan de una acción durante todo el juego hasta que eventualmente pierden.
+En ocasiones, al explorar, el bot pudo haber limpiado una línea del juego por casualidad, obteniendo una mayor recompensa para la acción que realizó, lo que hará que prefiera utilizar esa acción aún sin saber por qué funcionó. Por lo tanto, la mayoría de estos agentes solo abusan de una acción durante todo el juego hasta que eventualmente pierden, obteniendo las siguientees estadísticas:
+
+<img src="./img/graficaAccionValor.png">
 
 La excepción es el método de gradientes, pues al ser un método estocástico, este no sigue una sola acción a realizar, sino que a veces elige diferentes opciones. Sin embargo, esto no quiere decir que el algoritmo de gradientes en verdad esté aprendiendo mejor que los demás, solo que logra sobrevivir más tiempo gracias a que elige diferentes acciones en vez de solo una.
+
+<img src="./img/graficaGradientes.png">
 
 ---
 
@@ -126,6 +144,8 @@ Pero aún hay un problema: habíamos dicho que Tetris cuenta con aproximadamente
 Para resolver esto, es posible designar estados específicos con características propias, es decir, definir propiamente qué datos se van a tomar en cuenta para el estado. Cada persona que juegue Tetris puede definir sus propios estados para que el agente los considere. Por ejemplo, podemos considerar la altura máxima del tablero, pues cuando una persona juega Tetris constantemente busca que la altura sea lo mínimo posible, y dependiendo de eso toma acciones para bajar las columnas más altas.
 
 De este modo podemos definir los valores más relevantes para los estados. Sin embargo, aún así nada nos garantiza que los estados utilizados sean verdaderamente los mejores a tomar en cuenta para el juego. Esto es un proceso de prueba y error, donde variamos los estados a tomar en cuenta y vemos qué tan bien aprende el agente.
+
+<img src="./img/rotacion.gif" width=800px>
 
 ### Definición de Estados y Recompensas
 
@@ -162,7 +182,7 @@ Este es un método más avanzado de inteligencia artificial. Este método en con
 
 La red neuronal compuesta recibe el conjunto de estados y lo pasa por 2 capas ocultas para devolver los valores obtenidos para cada acción. Entonces el agente solamente elige la acción con valor mayor.
 
-<img src="DQN.iodraw.png"/>
+<img src="./img/DQN.iodraw.png"/>
 
 ### Estados Adicionales para Deep Q-Learning
 
@@ -173,6 +193,8 @@ Dado que ahora no necesitamos explorar cada estado posible, se puede añadir má
 - **Total de hoyos**: La suma de los hoyos del tablero. Consideramos hoyos todas las casillas libres de una columna con al menos 1 casilla llena encima
 - **Altura promedio**
 - **Columnas llenas**: La cantidad de columnas que llegan a la altura máxima
+
+<img src="./img/probot.gif" width=800px>
 
 ### Sistema de Recompensas Avanzado
 
