@@ -6,7 +6,7 @@
 
 ### **Carrera:** Ing. de Sistemas
 
-### **Curso:** Inteligecia Artificial I - SIS420
+### **Curso:** 7mo Semestre - Inteligecia Artificial I - SIS420 
 
 # Tetris Q-Learning Agent 
 
@@ -162,7 +162,7 @@ Este es un método más avanzado de inteligencia artificial. Este método en con
 
 La red neuronal compuesta recibe el conjunto de estados y lo pasa por 2 capas ocultas para devolver los valores obtenidos para cada acción. Entonces el agente solamente elige la acción con valor mayor.
 
-![DQN.iodraw.png](attachment:DQN.iodraw.png)
+<img src="DQN.iodraw.png"/>
 
 ### Estados Adicionales para Deep Q-Learning
 
